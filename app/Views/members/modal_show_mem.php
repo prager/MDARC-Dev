@@ -32,12 +32,16 @@
         </div>
         <div class="row">
           <div class="col-lg py-1">
+            <?php if(strtolower($mem['cell_unlisted']) != 'true') {?>
             <label for="w_phone">Cell Phone: </label><?php echo ' ' . $mem['w_phone']; ?>
+            <?php }?>
           </div>
         </div>
         <div class="row">
           <div class="col-lg py-1">
-            <label for="h_phone">Home Phone: </label><?php echo ' ' . $mem['h_phone']; ?>
+            <?php if(strtolower($mem['phone_unlisted']) != 'true') {?>
+              <label for="h_phone">Home Phone: </label><?php echo ' ' . $mem['h_phone']; ?>
+            <?php }?>
           </div>
         </div>
         <div class="row">
