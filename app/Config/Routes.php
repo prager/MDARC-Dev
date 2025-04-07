@@ -123,6 +123,10 @@ $routes->add('renew', 'Member::renew');
 $routes->add('send-renew/(:num)', 'Member::do_renew');
 $routes->add('print-dir', 'Staff::print_dir');
 $routes->add('print-callsigns', 'Staff::print_callsigns');
+
+$routes->add('mem_print-dir', 'Member::print_dir');
+$routes->add('mem_print-callsigns', 'Member::print_callsigns');
+
 $routes->add('edit-users', 'Master::edit_users');
 $routes->add('admin-edit-users', 'Admin::edit_users');
 $routes->add('delete-user/(:num)', 'Master::delete_user');

@@ -49,6 +49,36 @@ class Member extends BaseController {
 		return $data;
 	}
 
+	public function print_dir() {
+		if($this->check_mem()) {
+			echo view('template/header_member');
+			$param['states'] = $this->data_mod->get_states_array();
+			$param['lic'] = $this->data_mod->get_lic();
+			echo view('staff/print_dir_view', $this->staff_mod->get_dir_data(date('Y', time())));
+		}
+		else {
+			echo view('template/header');
+			$data['title'] = 'Authorization Error';
+			$data['msg'] = 'You may not be authorized to view this page. Go back and try again ' . anchor(base_url(), 'here'). '<br><br>';
+			echo view('status/status_view', $data);
+		}
+	}
+
+	public function print_callsigns() {
+		if($this->check_mem()) {
+			echo view('template/header_member');
+			$param['states'] = $this->data_mod->get_states_array();
+			$param['lic'] = $this->data_mod->get_lic();
+			echo view('staff/print_callsigns_view', $this->staff_mod->get_dir_data(date('Y', time())));
+		}
+		else {
+			echo view('template/header');
+			$data['title'] = 'Authorization Error';
+			$data['msg'] = 'You may not be authorized to view this page. Go back and try again ' . anchor(base_url(), 'here'). '<br><br>';
+			echo view('status/status_view', $data);
+		}
+	}
+
 	public function renew() {
 		echo view('template/header_member');
 		$new_usr = $this->mem_mod->get_member_by_email(strtolower($this->request->getPost('email')));

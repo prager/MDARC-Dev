@@ -19,6 +19,14 @@
               <!-- <td><a href="#" data-bs-toggle="modal" data-bs-target="#goPay" class="text-decoration-none text-body nav-link"><i class="bi bi-clipboard-check"></i> Renew Membership</a></td> -->
               <td><a href="https://pay-v1b.jlkconsulting.info/index.php/mdarc" class="text-decoration-none text-body nav-link"><i class="bi bi-clipboard-check"></i> Renew Membership</a></td>
             </tr>
+            <tr class="border-bottom">
+              <!-- <td><a href="#" data-bs-toggle="modal" data-bs-target="#goPay" class="text-decoration-none text-body nav-link"><i class="bi bi-clipboard-check"></i> Renew Membership</a></td> -->
+              <td><a href="<?php echo base_url() . '/index.php/mem_print-dir'; ?>" class="text-decoration-none text-body nav-link"><i class="bi bi-book"></i> Directory by Last Name</a></td>
+            </tr>
+            <tr class="border-bottom">
+              <!-- <td><a href="#" data-bs-toggle="modal" data-bs-target="#goPay" class="text-decoration-none text-body nav-link"><i class="bi bi-clipboard-check"></i> Renew Membership</a></td> -->
+              <td><a href="<?php echo base_url() . '/index.php/mem_print-callsigns'; ?>" class="text-decoration-none text-body nav-link"><i class="bi bi-book"></i> Directory by Callsign</a></td>
+            </tr>
 
             <!-- Renewal modal -->
             <div class="modal fade" id="goPay" tabindex="-1" aria-labelledby="goPayLabel" aria-hidden="true">
