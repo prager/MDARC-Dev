@@ -134,7 +134,7 @@ class Home extends BaseController {
 * Loads up the blank registration form
 */
   public function register() {
-  	echo view('template/header');
+  	echo view('template/header_light');
 	$email = $this->request->getPost('email') ?? 'none';
 	if(!$this->user_mod->check_email($email)){
 		$new_usr = $this->mem_mod->get_member_by_email(strtolower($email));

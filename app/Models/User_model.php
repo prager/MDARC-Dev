@@ -41,7 +41,7 @@ class User_model extends Model {
       $param['id_user_type'] = 2;
       $param['type_code'] = 2;
       $bldr->resetQuery();
-      $bldr->insert($param);
+      //$bldr->insert($param); //<--- *** for testing ***!!!!!
 
       $recipient = 'jkulisek.us@gmail.com';
       $subject = 'MDARC New User Registration';
@@ -51,7 +51,17 @@ class User_model extends Model {
           $param['verifystr'];
       $headers = array('From' => 'mdarc-memberships@arrleb.org', 'Reply-To' => 'mdarc-memberships@arrleb.org' );
 
- 	    mail($recipient, $subject, $message, $headers);
+      $mailarr['recipient'] = 'jkulisek.us@gmail.com';
+      $mailarr['subject'] = 'MDARC New User Registration';
+      $mailarr['message'] = $param['fname'] . ' ' . $param['lname'] . "\n\n".
+            $param['street'] . "\n\n" .$param['city'] . ' ' . $param['state_cd'] . $param['zip_cd'] . "\n\n".
+            ' Phone: ' . $param['phone'] . ' | Email: ' . $param['email'] . "\n\n" . $param['verifystr'];
+      $mailarr['headers'] = array('From' => 'mdarc-memberships@arrleb.org', 'Reply-To' => 'mdarc-memberships@arrleb.org' );
+      $mailarr['fromName'] = $param['fname'] . ' ' . $param['lname'];
+
+      $this->send_email($mailarr);
+
+ 	    //mail($recipient, $subject, $message, $headers); //<--- *** for testing ***!!!!!
 
       $recipient = $param['email'];
       $subject = 'MDARC Member Portal User Registration';
@@ -59,7 +69,7 @@ class User_model extends Model {
       $message = 'To finish your registration for MDARC Membership Portal click on the following link or copy paste in the browser: ' . $param['verifystr'] . "\n\n";
       $message .= 'You must do so within 72 hours otherwise you login information may be deactivated.
                   Thank you for your interest in Mount Diablo Amateur Radio Club!';
-	   	mail($recipient, $subject, $message, $headers);
+	   	//mail($recipient, $subject, $message, $headers); //<--- *** for testing ***!!!!!
     }
     else {
       $retarr['flag'] = FALSE;
@@ -79,6 +89,26 @@ class User_model extends Model {
     }
     $db->close;
     return $retarr;
+  }
+
+  public function send_email($param) {
+    $email = service('email');
+    $config['protocol'] = 'smtp';
+    $config['SMTPPort'] = '587';
+    $config['SMTPCrypto'] = 'tls';
+    $config['validate'] = 'true';
+    $config['SMTPHost'] = 'smtp.ionos.com';
+    $config['SMTPUser'] = env('EMAIL_USER');
+    $config['SMTPPass'] = env('EMAIL_PASS');
+    $config['fromEmail'] = 'leho@email.com';
+    $config['fromName'] = $param['fromName'];
+    $config['newline'] = '\n';
+    $email->initialize($config);
+    $email->setTo($param['recipient']);
+    $email->setSubject($param['subject']);
+    $email->setMessage($param['message']);
+    $email->setReplyTo( env('EMAIL_USER'));
+    $email->send();
   }
 
   public function is_member($email) {

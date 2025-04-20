@@ -29,9 +29,9 @@
               <li class="nav-item">
                   <a href="https://pay-test.jlkconsulting.info/index.php/mdarc" class="nav-link">Renew Membership</a>
               </li>
-              <!-- <li class="nav-item">
+              <li class="nav-item">
                 <a href="<?php echo base_url() . '/index.php/add-mem/new-member'; ?>" class="nav-link">Join MDARC</a>
-              </li> -->
+              </li>
               <!-- <li class="nav-item">
                 <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#goDonate">Donate to MDARC</a>
               </li> -->
