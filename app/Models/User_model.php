@@ -1,6 +1,7 @@
 <?php namespace App\Models;
 
 use CodeIgniter\Model;
+use App\Libraries\MyEmail;
 
 class User_model extends Model {
 
@@ -92,23 +93,35 @@ class User_model extends Model {
   }
 
   public function send_email($param) {
-    $email = service('email');
-    $config['protocol'] = 'smtp';
-    $config['SMTPPort'] = '587';
-    $config['SMTPCrypto'] = 'tls';
-    $config['validate'] = 'true';
-    $config['SMTPHost'] = 'smtp.ionos.com';
-    $config['SMTPUser'] = env('EMAIL_USER');
-    $config['SMTPPass'] = env('EMAIL_PASS');
-    $config['fromEmail'] = 'leho@email.com';
-    $config['fromName'] = $param['fromName'];
-    $config['newline'] = '\n';
-    $email->initialize($config);
-    $email->setTo($param['recipient']);
-    $email->setSubject($param['subject']);
-    $email->setMessage($param['message']);
-    $email->setReplyTo( env('EMAIL_USER'));
-    $email->send();
+    // $email = service('email');
+    // $config['protocol'] = 'smtp';
+    // $config['SMTPPort'] = '587';
+    // $config['SMTPCrypto'] = 'tls';
+    // $config['validate'] = 'true';
+    // $config['SMTPHost'] = 'smtp.ionos.com';
+    // $config['SMTPUser'] = env('EMAIL_USER');
+    // $config['SMTPPass'] = env('EMAIL_PASS');
+    // $config['fromEmail'] = 'leho@email.com';
+    // $config['fromName'] = $param['fromName'];
+    // $config['newline'] = '\n';
+    // $email->initialize($config);
+    // $email->setTo($param['recipient']);
+    // $email->setSubject($param['subject']);
+    // $email->setMessage($param['message']);
+    // $email->setReplyTo( env('EMAIL_USER'));
+    // $email->send();
+
+    $email = new MyEmail();
+    $to = 'jkulisek.us@gmail.com';
+    $subject = 'Test Email from CodeIgniter 4';
+    $body = '<h1>This is a test email</h1><p>Sent via PHPMailer!</p>';
+
+    if ($email->sendMail($to, $subject, $body)) {
+        echo 'Email sent!';
+    } else {
+        echo 'Failed to send email.';
+    }
+
   }
 
   public function is_member($email) {

@@ -25,6 +25,10 @@ class Home extends BaseController {
 	echo view('public/terms');
   }
 
+  public function send_mail() {
+	
+  }
+
   public function test_email() {	
 
 	$email = service('email');

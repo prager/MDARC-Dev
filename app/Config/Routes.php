@@ -61,6 +61,8 @@ $routes->add('add-fam-mem/(:num)', 'Member::add_fam_mem');
 $routes->add('add-fam/(:num)', 'Master::add_fam_mem');
 $routes->add('add-spouse/(:num)', 'Master::add_spouse');
 
+$routes->add('send-mail', 'Home::send_mail');
+
 $routes->add('admin-add-mem', 'Admin::add_mem');
 $routes->add('admin-add-mem/(:any)', 'Admin::add_member');
 $routes->add('admin-add-fam-mem/(:num)', 'Admin::add_fam_mem');

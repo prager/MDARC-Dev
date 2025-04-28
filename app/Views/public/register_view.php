@@ -89,7 +89,7 @@
     </div>
     <div class="row px-5">
       <div class='col-lg px-2 pt-3'>
-        <input class="btn btn-primary" type="submit" value=" Submit Your Registration">
+        <input class="btn btn-primary" type="submit" value=" Submit Your Registration"> &nbsp; <a href="<?php echo base_url(); ?>" class="text-decoration-none"> &nbsp; Cancel</a>
       </div>
     </div>
     </div>
