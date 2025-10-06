@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use App\Libraries\MailService;
 
 class Home extends BaseController {
   public function index() {
@@ -26,7 +27,36 @@ class Home extends BaseController {
   }
 
   public function send_mail() {
+	// $email = service('email');
+
+	// $config['protocol'] = 'smtp';
+	// $config['SMTPHost'] = 'smtp.ionos.com';
+	// $config['SMTPUser'] = 'mdarc-memberships@arrleb.org';
+	// $config['SMTPPass'] = 'CKPrb56yg!4Q$vC';
+	// $config['SMTPPort'] = 587;
+	// $config['mailType'] = 'html';
+
+	// $email->initialize($config);
+
+	// $email->setFrom('mdarc-memberships@arrleb.org', 'MDARC Membership Chair');
+	// $email->setTo('mdarc-memberships@arrleb.org');
 	
+	// $email->setSubject('Email Test');
+	// $email->setMessage('<h1>Send HTML Email using SMTP in CodeIgniter</h1>
+    //         <p>This is a test email sending using SMTP mail server with PHPMailer.</p>');
+
+	$mail = new MailService();
+
+	$to = 'mdarc-memberships@arrleb.org';
+	$subject = 'Test Email via PHPMailer';
+	$message = '<p>This is a <b>test email</b> sent from PHPMailer without Composer.</p>';
+
+	$result = $mail->sendMail($to, $subject, $message);
+
+	$data['msg'] = $result;
+
+	$data['title'] = 'Email msg status';
+	echo view('status/status_view.php', $data);
   }
 
   public function test_email() {	
